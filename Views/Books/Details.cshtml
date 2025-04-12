@@ -1,0 +1,50 @@
+@model Bookstore.Models.Book
+
+@{
+    ViewData["Title"] = "Book Details";
+}
+
+<h1>Book Details</h1>
+
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Title:</dt>
+        <dd class="col-sm-10">@Model.Title</dd>
+
+        <dt class="col-sm-2">Author:</dt>
+        <dd class="col-sm-10">@Model.Author?.Name</dd>
+
+        <dt class="col-sm-2">Genre:</dt>
+        <dd class="col-sm-10">@Model.Genre</dd>
+
+        <dt class="col-sm-2">ISBN:</dt>
+        <dd class="col-sm-10">@Model.ISBN</dd>
+
+        <dt class="col-sm-2">Price:</dt>
+        <dd class="col-sm-10">$@Model.Price</dd>
+
+        <dt class="col-sm-2">Publication Date:</dt>
+        <dd class="col-sm-10">@Model.PublicationDate.ToShortDateString()</dd>
+
+        <dt class="col-sm-2">In Stock:</dt>
+        <dd class="col-sm-10">@(Model.InStock ? "Yes" : "No")</dd>
+
+        <dt class="col-sm-2">Quantity:</dt>
+        <dd class="col-sm-10">@Model.Quantity</dd>
+
+        <dt class="col-sm-2">Description:</dt>
+        <dd class="col-sm-10">@Model.Description</dd>
+
+        <dt class="col-sm-2">Book ID:</dt>
+        <dd class="col-sm-10">@Model.BookId</dd>
+
+        <dt class="col-sm-2">Author ID:</dt>
+        <dd class="col-sm-10">@Model.AuthorId</dd>
+    </dl>
+</div>
+
+<div class="mt-3">
+    <a asp-action="Edit" asp-route-id="@Model.BookId" class="btn btn-primary">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

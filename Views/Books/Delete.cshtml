@@ -1,0 +1,41 @@
+@model Bookstore.Models.Book
+
+@{
+    ViewData["Title"] = "Delete Book";
+}
+
+<h1>Delete Book</h1>
+
+<h3>Are you sure you want to delete this book?</h3>
+<div>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Title:</dt>
+        <dd class="col-sm-10">@Model.Title</dd>
+
+        <dt class="col-sm-2">Author:</dt>
+        <dd class="col-sm-10">@Model.Author?.Name</dd>
+
+        <dt class="col-sm-2">Genre:</dt>
+        <dd class="col-sm-10">@Model.Genre</dd>
+
+        <dt class="col-sm-2">ISBN:</dt>
+        <dd class="col-sm-10">@Model.ISBN</dd>
+
+        <dt class="col-sm-2">Price:</dt>
+        <dd class="col-sm-10">$@Model.Price</dd>
+
+        <dt class="col-sm-2">Publication Date:</dt>
+        <dd class="col-sm-10">@Model.PublicationDate.ToShortDateString()</dd>
+
+        <dt class="col-sm-2">In Stock:</dt>
+        <dd class="col-sm-10">@(Model.InStock ? "Yes" : "No")</dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+         @Html.AntiForgeryToken()
+        <input type="hidden" asp-for="BookId" />
+        <button type="submit" class="btn btn-danger">Delete</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>

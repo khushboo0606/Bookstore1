@@ -1,0 +1,58 @@
+@model IEnumerable<Bookstore.Models.CartItem>
+@{
+    ViewData["Title"] = "Your Cart";
+}
+
+<h1>Your Cart</h1>
+
+@if (!Model.Any())
+{
+    <p>Your cart is empty.</p>
+    <a asp-controller="Books" asp-action="Index" class="btn btn-primary">Continue Shopping</a>
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Book Title</th>
+                <th>Price</th>
+                <th>Quantity</th>
+                <th>Total</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Book?.Title</td>
+                    <td>$@item.Book?.Price</td>
+                    <td>
+                        <!-- Form to update quantity -->
+                        <form asp-action="UpdateQuantity" asp-controller="Cart" method="post" class="form-inline">
+                            <input type="hidden" name="cartItemId" value="@item.Id" />
+                            <input type="number" name="quantity" value="@item.Quantity" min="1" class="form-control" style="width:80px;" />
+                            <button type="submit" class="btn btn-sm btn-primary ml-2">Update</button>
+                        </form>
+                    </td>
+                    <td>$@(item.Book?.Price * item.Quantity)</td>
+                    <td>
+                        <!-- Form to remove item from cart -->
+                        <form asp-action="RemoveFromCart" asp-controller="Cart" method="post">
+                            <input type="hidden" name="cartItemId" value="@item.Id" />
+                            <button type="submit" class="btn btn-sm btn-danger">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4>Total: $@(Model.Sum(item => (item.Book?.Price ?? 0) * item.Quantity))</h4>
+
+    <!-- Checkout button posting to PaymentController -->
+    <form asp-action="CreateCheckoutSession" asp-controller="Payment" method="post">
+        <button type="submit" class="btn btn-success">Proceed to Checkout</button>
+    </form>
+}

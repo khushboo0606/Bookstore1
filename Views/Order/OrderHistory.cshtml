@@ -1,0 +1,36 @@
+@model IEnumerable<Bookstore.Models.Order>
+
+<h2>Order History</h2>
+
+@if (!Model.Any())
+{
+    <p>No orders found.</p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Order ID</th>
+                <th>Order Date</th>
+                <th>Total Amount</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in Model)
+            {
+                <tr>
+                    <td>@order.Id</td>
+                    <td>@order.OrderDate.ToString("yyyy-MM-dd HH:mm")</td>
+                    <td>@order.TotalAmount</td>
+                    <td>@order.Status</td>
+                    <td>
+                        <a href="@Url.Action("OrderConfirmation", "Order", new { id = order.Id })">View Details</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
