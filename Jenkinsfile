@@ -12,24 +12,28 @@ pipeline {
             }
         }
 
+        stage('Restore') {
+            steps {
+                bat 'dotnet restore Bookstore.sln'
+            }
+        }
+
         stage('Build') {
             steps {
-                bat 'dotnet restore'
-                bat 'dotnet build'
+                bat 'dotnet build Bookstore.sln --no-restore'
             }
         }
 
         stage('Test') {
-    steps {
-        bat 'dotnet test ./Bookstore.Tests/Bookstore.Tests.csproj --logger "trx;LogFileName=test_results.trx"'
-
-    }
-}
+            steps {
+                bat 'dotnet test ./Bookstore.Tests/Bookstore.Tests.csproj --no-build --logger "trx;LogFileName=test_results.trx"'
+            }
+        }
 
         stage('Publish') {
             steps {
                 bat 'dotnet clean'
-                bat 'dotnet publish -c Release -o publish_output'
+                bat 'dotnet publish ./Bookstore.csproj -c Release -o publish_output'
             }
         }
 
