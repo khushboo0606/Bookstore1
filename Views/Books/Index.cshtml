@@ -1,13 +1,45 @@
 @model IEnumerable<Bookstore.Models.Book>
+@using Microsoft.AspNetCore.Mvc.Rendering
 
 @{
     ViewData["Title"] = "Books List";
+    var genresList = ViewBag.Genres as SelectList ?? new SelectList(Enumerable.Empty<SelectListItem>());
 }
 
 <h1>Books List</h1>
 
+<!-- 🔍 Search and Filter Form -->
+<form method="get" asp-action="Index" class="row mb-4 g-2">
+    <div class="col-md-3">
+        <input type="text" name="search" class="form-control" placeholder="Search by Title" value="@Context.Request.Query["search"]" />
+    </div>
+    <div class="col-md-2">
+        <select name="genre" class="form-select">
+            <option value="">All Genres</option>
+            @foreach (var g in genresList)
+            {
+                <option value="@g.Value" selected="@(Context.Request.Query["genre"] == g.Value)">
+                    @g.Text
+                </option>
+            }
+        </select>
+    </div>
+    <div class="col-md-2">
+        <input type="number" name="minPrice" step="0.01" class="form-control" placeholder="Min Price" value="@Context.Request.Query["minPrice"]" />
+    </div>
+    <div class="col-md-2">
+        <input type="number" name="maxPrice" step="0.01" class="form-control" placeholder="Max Price" value="@Context.Request.Query["maxPrice"]" />
+    </div>
+    <div class="col-md-3 d-flex">
+        <button type="submit" class="btn btn-primary me-2 w-100">Filter</button>
+        <a asp-action="Index" class="btn btn-secondary w-100">Reset</a>
+    </div>
+</form>
+
+<!-- ➕ Add Book Button (Admin only) -->
 <a asp-action="Create" class="btn btn-success mb-3">Add New Book</a>
 
+<!-- 📚 Books Table -->
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -30,23 +62,24 @@
                     <a asp-action="Details" asp-route-id="@item.BookId" class="btn btn-info btn-sm">Details</a>
                     <a asp-action="Edit" asp-route-id="@item.BookId" class="btn btn-warning btn-sm">Edit</a>
                     <a asp-action="Delete" asp-route-id="@item.BookId" class="btn btn-danger btn-sm">Delete</a>
-              @if (User.Identity?.IsAuthenticated == true) 
-    {
-        <form asp-action="AddToCart" asp-controller="Cart" method="post" style="display:inline;">
-            <input type="hidden" name="bookId" value="@item.BookId" />
-            <input type="number" name="quantity" value="1" min="1" class="form-control d-inline-block" style="width: 60px;" />
-            <button type="submit" class="btn btn-primary btn-sm">
-                <i class="bi bi-cart-plus"></i> Add to Cart
-            </button>
-        </form>
-    }
-    else
-    {
-        <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-secondary btn-sm">
-            <i class="bi bi-box-arrow-in-right"></i> Login to Buy
-        </a>
-    }
-</td>
+
+                    @if (User.Identity?.IsAuthenticated == true)
+                    {
+                        <form asp-action="AddToCart" asp-controller="Cart" method="post" style="display:inline;">
+                            <input type="hidden" name="bookId" value="@item.BookId" />
+                            <input type="number" name="quantity" value="1" min="1" class="form-control d-inline-block" style="width: 60px;" />
+                            <button type="submit" class="btn btn-primary btn-sm">
+                                <i class="bi bi-cart-plus"></i> Add to Cart
+                            </button>
+                        </form>
+                    }
+                    else
+                    {
+                        <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-secondary btn-sm">
+                            <i class="bi bi-box-arrow-in-right"></i> Login to Buy
+                        </a>
+                    }
+                </td>
             </tr>
         }
     </tbody>

@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Bookstore.Data;
 using Bookstore.Models;
-using System.Threading.Tasks;
 using System.Linq;
+using System.Threading.Tasks;
 
 public class BooksController : Controller
 {
@@ -16,9 +17,32 @@ public class BooksController : Controller
     }
 
     [AllowAnonymous] // Anyone can view books
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string search, string genre, decimal? minPrice, decimal? maxPrice)
     {
-        var books = await _context.Books.Include(b => b.Author).ToListAsync();
+        var booksQuery = _context.Books.Include(b => b.Author).AsQueryable();
+
+        if (!string.IsNullOrWhiteSpace(search))
+           booksQuery = booksQuery.Where(b => b.Title != null && b.Title.Contains(search));
+
+
+        if (!string.IsNullOrWhiteSpace(genre))
+            booksQuery = booksQuery.Where(b => b.Genre == genre);
+
+        if (minPrice.HasValue)
+            booksQuery = booksQuery.Where(b => b.Price >= minPrice.Value);
+
+        if (maxPrice.HasValue)
+            booksQuery = booksQuery.Where(b => b.Price <= maxPrice.Value);
+
+        var genres = await _context.Books
+            .Where(b => !string.IsNullOrEmpty(b.Genre))
+            .Select(b => b.Genre)
+            .Distinct()
+            .ToListAsync();
+
+        ViewBag.Genres = new SelectList(genres);
+
+        var books = await booksQuery.ToListAsync();
         return View(books);
     }
 
@@ -62,7 +86,7 @@ public class BooksController : Controller
         return View(book);
     }
 
-    [Authorize(Roles = "Admin")] // Only Admins can edit books
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Edit(int? id)
     {
         if (id == null) return NotFound();
@@ -108,7 +132,7 @@ public class BooksController : Controller
         return View(book);
     }
 
-    [Authorize(Roles = "Admin")] // Only Admins can delete books
+    [Authorize(Roles = "Admin")]
     public async Task<IActionResult> Delete(int? id)
     {
         if (id == null) return NotFound();

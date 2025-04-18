@@ -1,0 +1,82 @@
+@inject Bookstore.Data.ApplicationDbContext _context
+@using System.Security.Claims
+
+@{
+    ViewData["Title"] = "Admin Reports";
+
+    var totalBooksSold = ViewBag.TotalBooksSold as int? ?? 0;
+    var ordersByDate = ViewBag.OrdersByDate as IEnumerable<dynamic> ?? new List<dynamic>();
+    var stockList = ViewBag.StockList as IEnumerable<Bookstore.Models.Book> ?? new List<Bookstore.Models.Book>();
+}
+
+<h1 class="mb-4">📊 Admin Reports</h1>
+
+<!-- Total Books Sold -->
+<div class="card mb-4">
+    <div class="card-header bg-primary text-white">Total Books Sold</div>
+    <div class="card-body">
+        <h4 class="text-success">@totalBooksSold</h4>
+    </div>
+</div>
+
+<!-- Orders by Date -->
+<div class="card mb-4">
+    <div class="card-header bg-info text-white">Orders by Date</div>
+    <div class="card-body">
+        @if (ordersByDate.Any())
+        {
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Orders</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var o in ordersByDate)
+                    {
+                        <tr>
+                            <td>@o.Date.ToShortDateString()</td>
+                            <td>@o.Count</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No orders found.</p>
+        }
+    </div>
+</div>
+
+<!-- Remaining Stock -->
+<div class="card mb-4">
+    <div class="card-header bg-warning text-dark">📦 Remaining Stock</div>
+    <div class="card-body">
+        @if (stockList.Any())
+        {
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Stock</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var book in stockList)
+                    {
+                        <tr>
+                            <td>@book.Title</td>
+                            <td>@book.Quantity</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <p>No books in stock.</p>
+        }
+    </div>
+</div>

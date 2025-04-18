@@ -42,7 +42,7 @@ pipeline {
                 bat '''
                     docker stop bookstore-container || echo "Container not running"
                     docker rm bookstore-container || echo "Container not found"
-                    docker run -d -p 5000:80 --name bookstore-container bookstorewebapp
+                    docker run -d -p 5140:80 --name bookstore-container bookstorewebapp
                 '''
             }
         }
