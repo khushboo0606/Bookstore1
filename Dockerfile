@@ -2,25 +2,28 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# Copy the csproj file from the project root and restore dependencies
-COPY ["Bookstore.csproj", "."]
-RUN dotnet restore "Bookstore.csproj"
+# Copy project files and restore dependencies
+COPY ["Bookstore.csproj", "./"]
+RUN dotnet restore
 
-# Copy the rest of the source code to the container
+# Copy everything else
 COPY . .
 
 # Build and publish the application
-RUN dotnet build "Bookstore.csproj" -c Release -o /app/build
-RUN dotnet publish "Bookstore.csproj" -c Release -o /app/publish
+RUN dotnet build -c Release
+RUN dotnet publish -c Release -o /app/publish
 
-# Stage 2: Create the runtime image
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS runtime
+# Stage 2: Runtime image
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 EXPOSE 80
 EXPOSE 443
 
-# Copy the published output from the build stage
+#  Make app listen on all interfaces inside container
+ENV ASPNETCORE_URLS=http://0.0.0.0:80
+
+# Copy published app
 COPY --from=build /app/publish .
 
-# Define the entrypoint for the container
+# Default entry point
 ENTRYPOINT ["dotnet", "Bookstore.dll"]

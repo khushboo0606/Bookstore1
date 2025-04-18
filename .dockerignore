@@ -1,0 +1,22 @@
+# Ignore system folders
+AppData/
+OneDrive/
+.vscode/
+.vs/
+*.user
+*.suo
+
+# Ignore build output
+bin/
+obj/
+
+# Ignore logs and config secrets
+*.log
+*.db
+*.sqlite
+appsettings.Development.json
+appsettings.Local.json
+
+# Ignore Git stuff if present
+.git/
+.gitignore

@@ -26,7 +26,8 @@ pipeline {
 
         stage('Publish') {
             steps {
-                bat 'dotnet publish -c Release -o out'
+                bat 'dotnet clean'
+                bat 'dotnet publish -c Release -o publish_output'
             }
         }
 
