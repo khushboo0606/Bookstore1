@@ -19,10 +19,11 @@ pipeline {
         }
 
         stage('Test') {
-            steps {
-                bat 'dotnet test'
-            }
-        }
+    steps {
+        bat 'dotnet test Bookstore.Tests/Bookstore.Tests.csproj --logger "trx;LogFileName=test_results.trx"'
+        junit allowEmptyResults: true, testResults: '**/TestResults/*.trx'
+    }
+}
 
         stage('Publish') {
             steps {
