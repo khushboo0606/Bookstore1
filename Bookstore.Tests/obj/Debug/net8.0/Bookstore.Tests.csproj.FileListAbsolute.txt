@@ -629,3 +629,6 @@ C:\Users\35389\OneDrive\Desktop\Bookstore.Tests\obj\Debug\net8.0\refint\Bookstor
 C:\Users\35389\OneDrive\Desktop\Bookstore.Tests\obj\Debug\net8.0\Bookstore.Tests.pdb
 C:\Users\35389\OneDrive\Desktop\Bookstore.Tests\obj\Debug\net8.0\Bookstore.Tests.genruntimeconfig.cache
 C:\Users\35389\OneDrive\Desktop\Bookstore.Tests\obj\Debug\net8.0\ref\Bookstore.Tests.dll
+C:\Users\35389\OneDrive\Desktop\Bookstore\Bookstore.Tests\obj\Debug\net8.0\Bookstore.Tests.dll
+C:\Users\35389\OneDrive\Desktop\Bookstore\Bookstore.Tests\obj\Debug\net8.0\refint\Bookstore.Tests.dll
+C:\Users\35389\OneDrive\Desktop\Bookstore\Bookstore.Tests\obj\Debug\net8.0\Bookstore.Tests.pdb

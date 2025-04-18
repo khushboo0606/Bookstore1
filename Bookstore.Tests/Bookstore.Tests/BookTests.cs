@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Xunit;
-using Bookstore.Models;
+using Bookstore.Models;  // This will work after you fix the project reference
 
 namespace Bookstore.Tests
 {
     public class BookTests
     {
         [Fact]
-        public void Book_WithoutTitle_ShouldFailValidation()
+        public void Book_ShouldFailValidation_WhenTitleIsMissing()
         {
             var book = new Book
             {
