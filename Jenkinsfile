@@ -14,14 +14,15 @@ pipeline {
 
         stage('Build') {
             steps {
+                bat 'dotnet restore'
                 bat 'dotnet build'
             }
         }
 
         stage('Test') {
     steps {
-        bat 'dotnet test Bookstore.Tests/Bookstore.Tests.csproj --logger "trx;LogFileName=test_results.trx"'
-        junit allowEmptyResults: true, testResults: '**/TestResults/*.trx'
+        bat 'dotnet test ./Bookstore.Tests/Bookstore.Tests.csproj --logger "trx;LogFileName=test_results.trx"'
+
     }
 }
 
