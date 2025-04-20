@@ -1,7 +1,5 @@
 C:\Users\35389\OneDrive\Desktop\Bookstore\bin\Debug\net8.0\appsettings.Development.json
 C:\Users\35389\OneDrive\Desktop\Bookstore\bin\Debug\net8.0\appsettings.json
-C:\Users\35389\OneDrive\Desktop\Bookstore\bin\Debug\net8.0\Bookstore.Tests\obj\Bookstore.Tests.csproj.nuget.dgspec.json
-C:\Users\35389\OneDrive\Desktop\Bookstore\bin\Debug\net8.0\Bookstore.Tests\obj\project.assets.json
 C:\Users\35389\OneDrive\Desktop\Bookstore\bin\Debug\net8.0\Bookstore.staticwebassets.runtime.json
 C:\Users\35389\OneDrive\Desktop\Bookstore\bin\Debug\net8.0\Bookstore.exe
 C:\Users\35389\OneDrive\Desktop\Bookstore\bin\Debug\net8.0\Bookstore.deps.json
@@ -559,13 +557,3 @@ C:\Users\35389\OneDrive\Desktop\Bookstore\obj\Debug\net8.0\refint\Bookstore.dll
 C:\Users\35389\OneDrive\Desktop\Bookstore\obj\Debug\net8.0\Bookstore.pdb
 C:\Users\35389\OneDrive\Desktop\Bookstore\obj\Debug\net8.0\Bookstore.genruntimeconfig.cache
 C:\Users\35389\OneDrive\Desktop\Bookstore\obj\Debug\net8.0\ref\Bookstore.dll
-C:\Users\35389\OneDrive\Desktop\Bookstore\bin\Debug\net8.0\Bookstore.Tests\bin\Debug\net8.0\appsettings.Development.json
-C:\Users\35389\OneDrive\Desktop\Bookstore\bin\Debug\net8.0\Bookstore.Tests\bin\Debug\net8.0\appsettings.json
-C:\Users\35389\OneDrive\Desktop\Bookstore\bin\Debug\net8.0\Bookstore.Tests\bin\Debug\net8.0\Bookstore.deps.json
-C:\Users\35389\OneDrive\Desktop\Bookstore\bin\Debug\net8.0\Bookstore.Tests\bin\Debug\net8.0\Bookstore.runtimeconfig.json
-C:\Users\35389\OneDrive\Desktop\Bookstore\bin\Debug\net8.0\Bookstore.Tests\bin\Debug\net8.0\Bookstore.staticwebassets.runtime.json
-C:\Users\35389\OneDrive\Desktop\Bookstore\bin\Debug\net8.0\Bookstore.Tests\bin\Debug\net8.0\Bookstore.Tests.deps.json
-C:\Users\35389\OneDrive\Desktop\Bookstore\bin\Debug\net8.0\Bookstore.Tests\bin\Debug\net8.0\Bookstore.Tests.runtimeconfig.json
-C:\Users\35389\OneDrive\Desktop\Bookstore\bin\Debug\net8.0\Bookstore.Tests\bin\Debug\net8.0\Bookstore.Tests\obj\Bookstore.Tests.csproj.nuget.dgspec.json
-C:\Users\35389\OneDrive\Desktop\Bookstore\bin\Debug\net8.0\Bookstore.Tests\bin\Debug\net8.0\Bookstore.Tests\obj\project.assets.json
-C:\Users\35389\OneDrive\Desktop\Bookstore\bin\Debug\net8.0\Bookstore.Tests\obj\Debug\net8.0\Bookstore.Tests.sourcelink.json
