@@ -22,9 +22,12 @@ EXPOSE 443
 #  Make app listen on all interfaces inside container
 ENV ASPNETCORE_URLS=http://0.0.0.0:80
 
+HEALTHCHECK CMD curl --fail http://localhost:80/health || exit 1
+
 # Copy published app
 COPY --from=build /app/publish .
 
 
 # Default entry point
 ENTRYPOINT ["dotnet", "Bookstore.dll"]
+    

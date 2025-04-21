@@ -2,7 +2,10 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = "bookstore1-image"
+        DOTNET_CLI_TELEMETRY_OPTOUT = '1'
+        IMAGE_NAME = 'bookstorewebapp'
+        CONTAINER_NAME = 'bookstore-container'
+        PUBLISH_DIR = 'publish_output'
     }
 
     stages {
@@ -14,44 +17,51 @@ pipeline {
 
         stage('Restore Dependencies') {
             steps {
-                script {
-                    // Restoring dependencies before build
-                    bat 'dotnet restore Bookstore.sln'
-                }
+                bat 'dotnet restore Bookstore.sln'
             }
         }
 
         stage('Build Solution') {
             steps {
-                script {
-                    // Build the project
-                    bat 'dotnet build Bookstore.sln --no-restore'
-                }
+                bat 'dotnet build Bookstore.sln --no-restore'
             }
         }
 
-        stage('Build Docker Image') {
+        stage('Run Tests') {
             steps {
-                script {
-                    // Build Docker image
-                    docker.build(DOCKER_IMAGE)
-                }
+                bat 'dotnet test .\\Bookstore.Tests\\Bookstore.Tests.csproj --no-build --logger "trx;LogFileName=test_results.trx"'
             }
         }
 
-        stage('Run Docker Container') {
+        stage('Publish App') {
             steps {
-                script {
-                    // Run the Docker container
-                    docker.image(DOCKER_IMAGE).run('-d -p 8080:80')
-                }
+                bat 'dotnet clean Bookstore\\Bookstore.csproj'
+                bat "dotnet publish Bookstore\\Bookstore.csproj -c Release -o %PUBLISH_DIR%"
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                bat "docker build -t %IMAGE_NAME% ."
+            }
+        }
+
+        stage('Docker Run') {
+            steps {
+                bat '''
+                    docker stop %CONTAINER_NAME% || echo Container not running
+                    docker rm %CONTAINER_NAME% || echo Container not found
+                    docker run -d -p 5000:80 --name %CONTAINER_NAME% %IMAGE_NAME%
+                '''
             }
         }
     }
 
     post {
         always {
-            cleanWs() // Clean workspace after build
+            cleanWs()
+            echo 'Pipeline execution completed.'
         }
     }
 }
+

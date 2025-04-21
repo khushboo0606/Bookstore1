@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 c:\Users\35389\OneDrive\Desktop\Bookstore1\bin\Debug\net8.0\appsettings.Development.json
 c:\Users\35389\OneDrive\Desktop\Bookstore1\bin\Debug\net8.0\appsettings.json
 c:\Users\35389\OneDrive\Desktop\Bookstore1\bin\Debug\net8.0\Bookstore.Tests\obj\Bookstore.Tests.csproj.nuget.dgspec.json
@@ -569,3 +570,13 @@ C:\Users\35389\OneDrive\Desktop\Bookstore1\bin\Debug\net8.0\Bookstore.Tests\bin\
 C:\Users\35389\OneDrive\Desktop\Bookstore1\bin\Debug\net8.0\Bookstore.Tests\bin\Debug\net8.0\Bookstore.Tests\obj\Bookstore.Tests.csproj.nuget.dgspec.json
 C:\Users\35389\OneDrive\Desktop\Bookstore1\bin\Debug\net8.0\Bookstore.Tests\bin\Debug\net8.0\Bookstore.Tests\obj\project.assets.json
 C:\Users\35389\OneDrive\Desktop\Bookstore1\bin\Debug\net8.0\Bookstore.Tests\obj\Debug\net8.0\Bookstore.Tests.sourcelink.json
+=======
+C:\Users\35389\OneDrive\Desktop\Bookstore\obj\Debug\net8.0\Bookstore.csproj.AssemblyReference.cache
+C:\Users\35389\OneDrive\Desktop\Bookstore\obj\Debug\net8.0\Bookstore.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\35389\OneDrive\Desktop\Bookstore\obj\Debug\net8.0\Bookstore.csproj.CoreCompileInputs.cache
+C:\Users\35389\OneDrive\Desktop\Bookstore\obj\Debug\net8.0\Bookstore.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\35389\OneDrive\Desktop\Bookstore\obj\Debug\net8.0\Bookstore.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\35389\OneDrive\Desktop\Bookstore\obj\Debug\net8.0\Bookstore.RazorAssemblyInfo.cache
+C:\Users\35389\OneDrive\Desktop\Bookstore\obj\Debug\net8.0\Bookstore.RazorAssemblyInfo.cs
+C:\Users\35389\OneDrive\Desktop\Bookstore\obj\Debug\net8.0\Bookstore.sourcelink.json
+>>>>>>> 55b6a82862d1b90806b82922e201c2e9aad808d6
