@@ -35,8 +35,8 @@ pipeline {
 
         stage('Publish') {
             steps {
-                bat 'dotnet clean'
-                bat "dotnet publish .\\Bookstore.csproj -c Release -o %PUBLISH_DIR%"
+                bat 'dotnet clean Bookstore\\Bookstore.csproj'
+        bat "dotnet publish Bookstore\\Bookstore.csproj -c Release -o %PUBLISH_DIR%"
             }
         }
 

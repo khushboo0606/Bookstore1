@@ -29,3 +29,4 @@ COPY --from=build /app/publish .
 
 # Default entry point
 ENTRYPOINT ["dotnet", "Bookstore.dll"]
+    

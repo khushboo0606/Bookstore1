@@ -3004,7 +3004,8 @@
           "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": "8.0.0",
           "Microsoft.EntityFrameworkCore.Sqlite": "8.0.0",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "8.0.0",
-          "Stripe.net": "48.0.0"
+          "Stripe.net": "48.0.0",
+          "xunit": "2.4.2"
         },
         "compile": {
           "bin/placeholder/Bookstore.dll": {}
