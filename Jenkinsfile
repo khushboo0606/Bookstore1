@@ -9,7 +9,7 @@ pipeline {
     }
 
     stages {
-        stage('Checkout') {
+        stage('Checkout') { 
             steps {
                 checkout scm
             }
@@ -51,7 +51,7 @@ pipeline {
                 bat '''
                     docker stop %CONTAINER_NAME% || echo Container not running
                     docker rm %CONTAINER_NAME% || echo Container not found
-                    docker run -d -p 5140:80 --name %CONTAINER_NAME% %IMAGE_NAME%
+                    docker run -d -p 5000:80 --name %CONTAINER_NAME% %IMAGE_NAME%
                 '''
             }
         }
