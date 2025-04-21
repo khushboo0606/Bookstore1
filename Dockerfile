@@ -25,5 +25,6 @@ ENV ASPNETCORE_URLS=http://0.0.0.0:80
 # Copy published app
 COPY --from=build /app/publish .
 
+
 # Default entry point
 ENTRYPOINT ["dotnet", "Bookstore.dll"]
